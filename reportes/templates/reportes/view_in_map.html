@@ -1,0 +1,48 @@
+{%extends 'reportes/inicio.html'%}
+{%block title%} VER EN EL MAPA {%endblock%}
+
+{%block style%}
+<style>
+  /* Set the size of the div element that contains the map */
+  #map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }
+</style>
+{%endblock%}
+
+{# Begin content #}
+
+
+{% block content %}
+
+  <div class container>
+    <h3 align="center">UBICACION DEL REPORTE</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+  </div>
+
+{# End Content #}
+
+{% endblock %}
+
+
+{% block script %}
+  <div align="center">
+    <script>
+      function initMap() {
+        // The location of Uluru
+        var uluru = {lat: {{lat}}, lng: {{lng}}};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 19, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+      }
+          </script>
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcsV0jjH5BaL2VZzMtiQCFz_BT7chT32A&callback=initMap">
+          </script>
+    </script>
+  </div>
+{% endblock %}

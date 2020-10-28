@@ -1,0 +1,12 @@
+{%extends 'reportes/base.html'%}
+{%block title%} INICIO {%endblock%}
+
+{% block content %}
+{%include 'reportes/components/messages.html'%}
+  	<h1 align="center">BIENVENIDO  {{request.user.username|upper}}</h1>
+  	<h2 align="center">Este es el sistema de reportes de Servicios Públicos de la municipalidad de Ipala</h2>
+  	<br>
+  	<h3 align="center">SELECCIONA UNA ACCIÓN POR FAVOR</h3>
+  	<br>
+  	<br>
+{% endblock %}

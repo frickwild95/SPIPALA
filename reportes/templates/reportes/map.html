@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+  <h3>UBICACION DEL REPORTE</h3>
+  <!--The div element for the map -->
+  <div id="map"></div>
+  </body>
+  <script>
+    function initMap() {
+      lat = 14.830790100000002;
+      lng = -89.51721289999999;
+      // The location of Uluru
+      var uluru = {lat: lat, lng: lng};
+      // var uluru = {lat: {{latitud}}, lng: {{longitud}}};
+      // var uluru = {lat: -25.344, lng: 131.036};
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 16, center: uluru});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcsV0jjH5BaL2VZzMtiQCFz_BT7chT32A&callback=initMap">
+        </script>
+  </script>
+</html>

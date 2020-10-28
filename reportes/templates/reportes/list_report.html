@@ -1,0 +1,41 @@
+{%extends 'reportes/inicio.html'%}
+{%block title%} INICIO {%endblock%}
+{% block content %}
+<div class="container">
+
+  <h1 align="center">BIENVENIDO</h1>
+  <h2 align="center">ESTOS SON LOS REPORTES</h2>
+  <table class="table table-striped">
+    <tr>
+    <th>Fecha</th>
+    <th>Nombre</th>
+    <th>Teléfono</th>
+    <th>Tipo de reporte</th>
+    <th>Residencia</th>
+    <th>Referencia del lugar</th>
+    <th>Descripción</th>
+    <th>Ubicacion</th>
+    <th>Ver en el mapa</th>
+    </tr>
+    {%for r in reports%}
+    <tr>
+      <td>{{r.fecha}}</td>
+      <td>{{r.usuario}}</td>
+      <td>{{r.telefono}}</td>
+      <td>{{r.type.name}}</td>
+      <td>{{r.residencia}}</td>
+      <td>{{r.referencia}}</td>
+      <td>{{r.descripcion}}</td>
+      <td>{{r.ubicacion}}</td>
+      <td><a href="{%url 'view_map' r.pk%}" class="btn btn-primary">Ver en el mapa</a></td>
+    </tr>
+    {%endfor%}
+
+  </table>
+</div>
+{%block script%}
+<script>
+  function()
+</script>
+{%endblock%}
+{% endblock %}

@@ -1,0 +1,51 @@
+{%extends 'reportes/inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}GENERAR ALERTA{% endblock %}
+{% block content %}
+<div class="container">
+
+<h1 align="center">AQUI SE REPORTA</h1>
+<hr>
+<h6> Por favor, primero agregue su ubicación.</h6>
+<p><button onclick="geoFindMe()" class="btn btn-danger">Agregar Ubicacion</button></p>
+<div id="out" class="alert alert-info" role="alert">
+</div>
+<form class="" action="{%url 'reportar'%}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <input type="submit" value="GUARDAR">
+</form>
+</div>
+    {% block script %}
+
+    <script type="text/javascript">
+      function geoFindMe() {
+        var output = document.getElementById("out");
+
+        if (!navigator.geolocation){
+          output.innerHTML = "<h3>EL SERVICIO DE UBICACION NO ESTA DISPONIBLE PARA TU OS</h3>";
+          return;
+        }
+
+        function success(position) {
+          output.innerHTML = '<p style="color:green";>GRACIAS!!! LA UBICACION SE ADJUNTO CORRECTAMENTE</p>';
+          var latitude  = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          document.getElementById("id_ubicacion").value = latitude + ", " + longitude ;
+        };
+
+        function error() {
+          output.innerHTML = '<p style="color:red";>OCURRIO UN ERROR CUANDO SE CAPTURABA LA UBICACION ES POSIBLE QUE NO HAYAS PERMITIDO A LA APP USAR EL SERVICIO DE UBICACION GPS</p>';
+        };
+
+        output.innerHTML = "<p>CAPTURANDO</p>";
+
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+
+    </script>
+    {% endblock %}
+
+    {% endblock %}
